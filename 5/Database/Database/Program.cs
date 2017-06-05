@@ -7,62 +7,42 @@ namespace Database
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Conectado a al base de datos");
+            Console.WriteLine("Conectando a la base de datos");
+            Db.Conectar();
 
-            Db conectar = new Db();
-            //conectar.Conectar();
-            Usuario nuevoUsuario = null;
-            if (conectar.EstaLaConexionAbierta())
+            if (Db.EstaLaConexionAbierta())
             {
-                nuevoUsuario = new Usuario()
+                //List<MarcasNCoches> lista = Db.DameListaMarcasNCoches();
+                //lista.ForEach(elemento => 
+                //{
+                //    Console.WriteLine(
+                //            " Marca: " + elemento.marca
+                //            +
+                //            " Nº de coches: " + elemento.nCoches
+                //            );
+                //});
+
+                //List<Coche> listaCoches = Db.DameListaCochesConProcedimientoAlmacenado();
+                //listaCoches.ForEach(coche =>
+                //{
+                //    Console.WriteLine(
+                //        @"Matrícula: " + coche.matricula +
+                //        " Marca: " + coche.marca.denominacion +
+                //        " Combustible: " + coche.tipoCombustible.denominacion
+                //        );
+                //});
+
+                List<Coche> listaCoches = Db.GET_COCHE_POR_MARCA_MATRICULA_PLAZAS();
+                listaCoches.ForEach(coche =>
                 {
-                    //hiddenId = 0,
-                    //id = "23j3232",
-                    email = "pedroleon@hotmail.com",
-                    password = "123334",
-                    firstName = "pdro",
-                    lastName = "leon",
-                    photoUrl = "www.pepitofilm3.com",
-                    searchPreferences = "",
-                    status = false,
-                    deleted = false,
-                    isAdmin = false
-                };
-                //conectar.InsertarUsuario(nuevoUsuario);
-                List<Usuario> usuarios = conectar.DamelosUsuarios();
-                usuarios.ForEach(usuario =>
-                {
-                    Console.WriteLine("Nombre: " + usuario.firstName + " " + usuario.lastName + 
-                                      "   Email: "   + usuario.email + "   status: " + usuario.status +
-                                      "   hiddenId: " + usuario.hiddenId
-                    );
+                    Console.WriteLine(
+                        @"Matrícula: " + coche.matricula +
+                        " Marca: " + coche.marca.denominacion +
+                        " NPlazas: " + coche.nPlazas
+                        );
                 });
-                foreach (var usuario in usuarios)
-                {
-                    Console.WriteLine("Nombre: " + usuario.firstName + " " + usuario.lastName);
-                }
             }
-            //conectar.eliminarUsuario(178);
-            //conectar.eliminarUsuarioPorEmail(nuevoUsuario.email);
-            Usuario nuevoUsuario2 = new Usuario()
-            {
-                //hiddenId = 0,
-                //id = "23j3232",
-                email = "andres123@hotmail.com",
-                password = "99999007532",
-                firstName = "jose",
-                lastName = "andrade",
-                photoUrl = "www.informatizandoweb.com",
-                searchPreferences = "",
-                status = false,
-                deleted = false,
-                isAdmin = false
-            };
-            conectar.actualizarUsuarios(nuevoUsuario2);
-            conectar.Desconectar();
+            Db.Desconectar();
             Console.ReadKey();
-
-            conectar.Desconectar();
         }
-    }
-}
+ }
