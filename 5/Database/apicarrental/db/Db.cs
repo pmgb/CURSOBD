@@ -302,7 +302,7 @@ namespace apicarrental
     }
     return resultados;
 }
-        public static List<Coche> GET_COCHE_POR_MARCA_MATRICULA_PLAZAS()
+        public static List<Coches> GET_COCHE_POR_MARCA_MATRICULA_PLAZAS()
         {
             // CREO EL OBJETO EN EL QUE SE DEVOLVERÁN LOS RESULTADOS
             List<Coche> resultados = new List<Coche>();
@@ -333,7 +333,7 @@ namespace apicarrental
 
 
 
-        public static List<Coche> GET_COCHE_POR_MARCA_MATRICULA_PLAZAS_2(string marca, short nPlazas)
+        public static List<Coches> GET_COCHE_POR_MARCA_MATRICULA_PLAZAS_2(string marca, short nPlazas)
             {
                 // CREO EL OBJETO EN EL QUE SE DEVOLVERÁN LOS RESULTADOS_pm
                 List<Coches> resultados = new List<Coches>();

@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{901CFED1-8E7A-48B2-8654-1AAD9B15E75B}</ProjectGuid>
+    <ProjectGuid>{D18B7F0F-9A72-4C60-8557-A90BFFB363A2}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>apicarrental</RootNamespace>
-    <AssemblyName>apicarrental</AssemblyName>
+    <RootNamespace>ApiCarRental</RootNamespace>
+    <AssemblyName>ApiCarRental</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -115,11 +115,17 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CochesController.cs" />
-    <Compile Include="db\Db.cs" />
+    <Compile Include="Controllers\MarcasController.cs" />
+    <Compile Include="DB\Db.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\RespuestaApi.cs" />
+    <Compile Include="Models\Coche.cs" />
+    <Compile Include="Models\Marca.cs" />
+    <Compile Include="Models\MarcasNCoches.cs" />
+    <Compile Include="Models\RespuestaAPI.cs" />
+    <Compile Include="Models\TipoCombustible.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -150,9 +156,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>53194</DevelopmentServerPort>
+          <DevelopmentServerPort>53040</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53194/</IISUrl>
+          <IISUrl>http://localhost:52673/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

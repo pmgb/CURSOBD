@@ -22,10 +22,12 @@ namespace ApiCarRental.Controllers
         //}
 
         // GET: api/Coches/5
-        public IEnumerable<Coche> Get()
+        // public IEnumerable<Coche> Get()
+        public RespuestaAPI Get()
         {
+            RespuestaAPI resultado = new RespuestaAPI
 
-            IEnumerable<Coche> resultado = new List<Coche>();
+            IEnumerable<Coche> data = new List<Coche>();
             try
             {
                 Db.Conectar();
