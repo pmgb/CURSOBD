@@ -10,7 +10,12 @@ namespace ApiCarRental.Controllers
     public class CochesController : ApiController
     {
         // GET: api/Coches
-        
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
+
+        //public IEnumerable<Coche> Get()
         public RespuestaAPI Get()
         {
             RespuestaAPI resultado = new RespuestaAPI();

@@ -28,38 +28,31 @@
     }
 
     $('#btnAddMarca').click(function () {
-        debugger;
+        //debugger;
         var nuevaMarca = $('#txtMarcaDenominacion').val();
         var urlAPI = 'http://localhost:52673/api/marcas';
-        var data = {
+
+        var dataNuevaMarca = {
             id: 0,
             denominacion: nuevaMarca
         };
-        debugger;
+        //debugger;
+
         $.ajax({
-            url: urlapi,
-            type: "post",
-            data: JSON.stringify({
-                id: 0,
-                denominacion: nuevamarca
-            }),
-            //data: {
-            //    id: 0,
-            //    denominacion: nuevamarca
-            //},
-            contenttype: "application/json",
-            complete: function (respuesta, estado) {
-                debugger;
+            url: urlAPI,
+            type: "POST",
+            dataType: 'json',
+            data: dataNuevaMarca,
+            success: function (respuesta) {
+                //debugger;
+                console.log(respuesta);
+            },
+            error: function (respuesta) {
                 console.log(respuesta);
             }
         });
-        //$.post(urlAPI, data, function (result) {
-        //    debugger;
-        //    $("span").html(result);
-        //});
-
-
     });
 
     GetMarcas();
+
 });

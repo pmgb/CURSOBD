@@ -7,70 +7,72 @@ using System.Web.Http;
 
 namespace ApiCarRental.Controllers
 {
-    public class CochesController : ApiController
+    public class MarcasController : ApiController
     {
-        // GET: api/Coches
-        
+        // GET: api/Marcas
         public RespuestaAPI Get()
         {
             RespuestaAPI resultado = new RespuestaAPI();
-            List<Coche> data = new List<Coche>();
+            List<Marca> listaMarcas = new List<Marca>();
             try
             {
                 Db.Conectar();
+
                 if (Db.EstaLaConexionAbierta())
                 {
-                    data = Db.DameListaCochesConProcedimientoAlmacenado();
-                    resultado.error = "";
+                    listaMarcas = Db.GetMarcas();
                 }
+                resultado.error = "";
                 Db.Desconectar();
             }
-            catch (Exception ex)
+            catch 
             {
-                resultado.error = "Error";
+                resultado.error = "Se produjo un error";
             }
-            resultado.totalElementos = data.Count;
-            resultado.data = data;
+
+            resultado.totalElementos = listaMarcas.Count;
+            resultado.dataMarcas =  listaMarcas;
             return resultado;
-            
         }
 
-        // GET: api/Coches/5
+        // GET: api/Marcas/5
         public RespuestaAPI Get(long id)
         {
             RespuestaAPI resultado = new RespuestaAPI();
-            List<Coche> data = new List<Coche>();
+            List<Marca> listaMarcas = new List<Marca>();
             try
             {
                 Db.Conectar();
+
                 if (Db.EstaLaConexionAbierta())
                 {
-                    data = Db.DameListaCochesConProcedimientoAlmacenadoPorId(id);
-                    resultado.error = "";
+                    listaMarcas = Db.GetMarcasPorId(id);
                 }
+                resultado.error = "";
                 Db.Desconectar();
             }
-            catch (Exception ex)
+            catch
             {
-                resultado.error = "Error";
+                resultado.error = "Se produjo un error";
             }
-            resultado.totalElementos = data.Count;
-            resultado.data = data;
-            return resultado;
 
+            resultado.totalElementos = listaMarcas.Count;
+            resultado.dataMarcas = listaMarcas;
+            return resultado;
         }
 
-        // POST: api/Coches
+        // POST: api/Marcas
         public void Post([FromBody]string value)
         {
+            string a = value;
         }
 
-        // PUT: api/Coches/5
+        // PUT: api/Marcas/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE: api/Coches/5
+        // DELETE: api/Marcas/5
         public void Delete(int id)
         {
         }

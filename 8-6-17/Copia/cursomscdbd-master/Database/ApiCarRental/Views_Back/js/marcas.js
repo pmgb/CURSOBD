@@ -4,7 +4,7 @@
         var urlAPI = 'http://localhost:52673/api/marcas';
 
         $.get(urlAPI, function (respuesta, estado) {
-
+            
             console.log(respuesta);
             $('#resultados').html('');
             // COMPRUEBO EL ESTADO DE LA LLAMADA
@@ -40,9 +40,9 @@
             url: urlapi,
             type: "post",
             data: JSON.stringify({
-                id: 0,
-                denominacion: nuevamarca
-            }),
+                    id: 0,
+                    denominacion: nuevamarca
+                }),
             //data: {
             //    id: 0,
             //    denominacion: nuevamarca
