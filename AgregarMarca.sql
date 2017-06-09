@@ -1,6 +1,6 @@
 -- PROCEDIMIENTO PARA INSERTAR UNA NUEVA MARCA
 
-CREATE PROCEDURE AgregarMarca
+ALTER PROCEDURE AgregarMarca
 	@denominacion nvarchar (50)
 AS
 BEGIN

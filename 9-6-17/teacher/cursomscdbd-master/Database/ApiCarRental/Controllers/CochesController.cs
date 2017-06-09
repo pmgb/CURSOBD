@@ -16,8 +16,6 @@ namespace ApiCarRental.Controllers
         //}
 
         //public IEnumerable<Coche> Get()
-
-        
         public RespuestaAPI Get()
         {
             RespuestaAPI resultado = new RespuestaAPI();
@@ -39,7 +37,7 @@ namespace ApiCarRental.Controllers
             resultado.totalElementos = data.Count;
             resultado.data = data;
             return resultado;
-
+            
         }
 
         // GET: api/Coches/5

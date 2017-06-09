@@ -404,8 +404,8 @@ namespace ApiCarRental
         public static List<TipoCombustible>GetTiposCombustibles()
         {
             List<TipoCombustible> resultados = new List<TipoCombustible>();
-            string procedimiento = "dbo.GetTiposCombustibles_pm";
-            //OK
+            string procedimiento = "dbo.GetTiposCombustibles";
+
             SqlCommand comando = new SqlCommand(procedimiento, conexion);
 
             SqlDataReader reader = comando.ExecuteReader();
@@ -422,29 +422,9 @@ namespace ApiCarRental
             return resultados;
         }
 
-
         public static int AgregarMarca(Marca marca)
         {
             string procedimiento = "dbo.AgregarMarca";
-            //OK
-            SqlCommand comando = new SqlCommand(procedimiento, conexion);
-            comando.CommandType = CommandType.StoredProcedure;
-            SqlParameter parametro = new SqlParameter();
-            parametro.ParameterName = "denominacion";
-            parametro.SqlDbType = SqlDbType.NVarChar;
-            parametro.SqlValue = marca.denominacion;
-
-            comando.Parameters.Add(parametro);
-            int filasAfectadas = comando.ExecuteNonQuery();
-
-            return filasAfectadas;
-        }
-
-        public static int AgregarTipoCombustible(Marca marca)
-            
-        {
-            string procedimiento = "dbo.AgregarTipoCombustible";
-            //Hay que arreglar AgregarTipoCombustible
 
             SqlCommand comando = new SqlCommand(procedimiento, conexion);
             comando.CommandType = CommandType.StoredProcedure;
@@ -458,13 +438,11 @@ namespace ApiCarRental
 
             return filasAfectadas;
         }
-
-
 
         public static int EliminarMarca(long id)
         {
-            string procedimiento = "dbo.ELiminarMarca";
-            //Nuevo, sin terminar
+            string procedimiento = "dbo.EliminarMarca";
+
             SqlCommand comando = new SqlCommand(procedimiento, conexion);
             comando.CommandType = CommandType.StoredProcedure;
             SqlParameter parametro = new SqlParameter();
@@ -481,7 +459,7 @@ namespace ApiCarRental
         public static int ActualizarMarca(long id, Marca marca)
         {
             string procedimiento = "dbo.ActualizarMarca";
-            //Nuevo, sin terminar
+
             SqlCommand comando = new SqlCommand(procedimiento, conexion);
             comando.CommandType = CommandType.StoredProcedure;
             SqlParameter parametro = new SqlParameter();
@@ -491,16 +469,15 @@ namespace ApiCarRental
             comando.Parameters.Add(parametro);
 
             SqlParameter parametroDenominacion = new SqlParameter();
-            parametro.ParameterName = "denominacion";
-            parametro.SqlDbType = SqlDbType.NVarChar;
-            parametro.SqlValue = marca.denominacion;
+            parametroDenominacion.ParameterName = "denominacion";
+            parametroDenominacion.SqlDbType = SqlDbType.NVarChar;
+            parametroDenominacion.SqlValue = marca.denominacion;
             comando.Parameters.Add(parametroDenominacion);
 
             int filasAfectadas = comando.ExecuteNonQuery();
 
             return filasAfectadas;
         }
-
 
     }
 }

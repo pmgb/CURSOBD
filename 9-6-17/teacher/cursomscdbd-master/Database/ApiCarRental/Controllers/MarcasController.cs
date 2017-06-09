@@ -25,13 +25,13 @@ namespace ApiCarRental.Controllers
                 resultado.error = "";
                 Db.Desconectar();
             }
-            catch
+            catch 
             {
                 resultado.error = "Se produjo un error";
             }
 
             resultado.totalElementos = listaMarcas.Count;
-            resultado.dataMarcas = listaMarcas;
+            resultado.dataMarcas =  listaMarcas;
             return resultado;
         }
 
@@ -71,14 +71,11 @@ namespace ApiCarRental.Controllers
             try
             {
                 Db.Conectar();
-
                 if (Db.EstaLaConexionAbierta())
                 {
                     filasAfectadas = Db.AgregarMarca(marca);
                 }
-
                 respuesta.totalElementos = filasAfectadas;
-
                 Db.Desconectar();
             }
             catch (Exception ex)
@@ -94,7 +91,25 @@ namespace ApiCarRental.Controllers
         [HttpPut]
         public IHttpActionResult Put(int id, [FromBody]Marca marca)
         {
-            return Ok(marca);
+            RespuestaAPI respuesta = new RespuestaAPI();
+            respuesta.error = "";
+            int filasAfectadas = 0;
+            try
+            {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta())
+                {
+                    filasAfectadas = Db.ActualizarMarca(id, marca);
+                }
+                respuesta.totalElementos = filasAfectadas;
+                Db.Desconectar();
+            }
+            catch (Exception ex)
+            {
+                respuesta.totalElementos = 0;
+                respuesta.error = "Error al actualizar la marca";
+            }
+            return Ok(respuesta);
         }
 
         // DELETE: api/Marcas/5

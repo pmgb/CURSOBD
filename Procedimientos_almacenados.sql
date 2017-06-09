@@ -36,3 +36,25 @@ GROUP BY
 ORDER BY Marcas.denominacion
 
 END
+
+-- PROCEDIMIENTO PARA ELIMINAR UNA MARCA
+
+CREATE PROCEDURE EliminarMarca
+	@id bigint
+AS
+BEGIN
+	DELETE FROM Marcas WHERE id = @id
+END
+
+
+-- PROCEDIMIENTO PARA ACTUALIZAR LOS DATOS DE UNA MARCA
+
+CREATE PROCEDURE ActualizarMarca
+    @id bigint
+	,@denominacion nvarchar(50)
+AS
+BEGIN
+   UPDATE Marcas SET
+     denominacion = @denominacion
+	WHERE id = @id
+END

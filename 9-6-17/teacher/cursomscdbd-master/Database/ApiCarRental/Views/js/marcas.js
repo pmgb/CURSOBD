@@ -1,11 +1,11 @@
 ﻿$(document).ready(function () {
 
     function GetMarcas() {
+
         var urlAPI = 'http://localhost:52673/api/marcas';
 
         $.get(urlAPI, function (respuesta, estado) {
 
-            console.log(respuesta);
             $('#resultados').html('');
             // COMPRUEBO EL ESTADO DE LA LLAMADA
             if (estado === 'success') {
@@ -13,22 +13,23 @@
 
                 var relleno = '';
 
-                relleno += '<table border="1">';
-                relleno += ' <tr>';
-                relleno += '        <td>Id</td>';
-                relleno += '        <td>Denominacion</td>';
-                relleno += '        <td>Acciones</td>';
-                relleno += '   </tr>';
+                relleno += '<table border="0">';
+                relleno += '    <tr>';
+                relleno += '        <td>Id.</td>'
+                relleno += '        <td>Denominación</td>'
+                relleno += '        <td>Acciones</td>'
+                relleno += '    </tr>';
                 $.each(respuesta.dataMarcas, function (indice, elemento) {
 
-                    relleno += '   <tr>';
+                    relleno += '    <tr>';
                     relleno += '        <td>' + elemento.id + '</td>';
                     relleno += '        <td>' + elemento.denominacion + '</td>';
                     relleno += '        <td>';
-                    relleno += '            <button id="btnEliminar">X</button>';
-                    relleno += '            <button id="btnEditar">Editar</button>';
-                    relleno += '        <td>';
-                    relleno += '   </tr>';                    
+                    relleno += '            <button data-id="' + elemento.id + '" id="btnEliminar">X</button>';
+                    relleno += '            <button data-id="' + elemento.id + '" id="btnEditar">Editar</button>';
+                    relleno += '        </td>';
+                    relleno += '    </tr>';
+                    
                 });
                 relleno += '</table>';
                 $('#resultados').append(relleno);
@@ -36,13 +37,11 @@
         });
     }
 
-
-    $('#resultados').on('click', '#btnEliminar', (function (){
+    $('#resultados').on('click', '#btnEliminar', function () {
         var idMarca = $(this).attr('data-id');
         var urlAPI = 'http://localhost:52673/api/marcas';
-        
         $.ajax({
-            url: urlAPI + '/'+ idMarca,
+            url: urlAPI + '/' + idMarca,
             type: "DELETE",
             success: function (respuesta) {
                 GetMarcas();
@@ -52,8 +51,6 @@
             }
         });
     });
-
-    //A partir de aquí abajo ...no sé
 
     $('#resultados').on('click', '#btnEditar', function () {
         var idMarca = $(this).attr('data-id');
@@ -106,12 +103,3 @@
     GetMarcas();
 
 });
-
-
-//$('#resultados').on('click', '#btnEliminar', (function (){
-//    alert('Eliminando !!!!');
-//}
-
-//      $('#resultados').on('click','#btnEditar',(function (){
-//          alert('Editar !!!!');
-//    }
